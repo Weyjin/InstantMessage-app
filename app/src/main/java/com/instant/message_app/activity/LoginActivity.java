@@ -64,9 +64,14 @@ public class LoginActivity extends AppCompatActivity {
         //执行后台任务（耗时操作）,不可在此方法内修改UI
         @Override
         protected String doInBackground(String... params) {
+            try{
+                String result= HttpUtils.login(params[0],params[1]);
+                return result;
+            }catch (Exception e){
+                e.printStackTrace();
+            }
 
-            String result= HttpUtils.login(params[0],params[1]);
-            return result;
+            return null;
         }
 
         //更新进度信息

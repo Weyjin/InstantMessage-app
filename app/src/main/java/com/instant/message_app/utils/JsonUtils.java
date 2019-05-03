@@ -50,11 +50,19 @@ public class JsonUtils {
     public static LoginResult getLoginResult(String json){
         JSONObject object=JSONObject.parseObject(json);
         LoginResult result=new LoginResult();
-        result.setUserName(object.getString("userName"));
-        result.setSignature(object.getString("signature"));
-        result.setUserId(object.getInteger("userId"));
-        result.setMsg(object.getString("msg"));
-        return result;
+
+        String msg=object.getString("msg");
+        if(msg.equals("error")){
+            result.setMsg(object.getString("msg"));
+            return result;
+        }else {
+            result.setUserName(object.getString("userName"));
+            result.setSignature(object.getString("signature"));
+            result.setUserId(object.getInteger("userId"));
+            result.setMsg(object.getString("msg"));
+            return result;
+        }
+
     }
 
 
