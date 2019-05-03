@@ -1,2 +1,2 @@
-*.java linguist-language=Android
-*.* linguist-language=Android
+*.java linguist-language=java
+*.* linguist-language=java
