@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.instant.message_app.R;
+import com.instant.message_app.constants.SocketConstant;
 import com.instant.message_app.entity.ChatMessage;
+import com.instant.message_app.ui.CircleImageView;
+import com.instant.message_app.utils.LoadImagesTask;
 
 import java.util.List;
 
@@ -42,6 +45,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         viewHolder.name.setText(chatMessages.get(position).getUser().getName());
         viewHolder.message.setText(chatMessages.get(position).getMessage());
+        String uri= SocketConstant.HOST_NAME+"/"+chatMessages.get(position).getUser().getImg();
+        new LoadImagesTask(viewHolder.img).execute(uri);
     }
 
     @Override
@@ -63,10 +68,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder{
         private TextView name,message;
+        private CircleImageView img;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.text_name);
             message=itemView.findViewById(R.id.text_message);
+            img=itemView.findViewById(R.id.img);
         }
     }
 

@@ -6,11 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
 import com.instant.message_app.R;
 import com.instant.message_app.entity.ChatMessage;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 

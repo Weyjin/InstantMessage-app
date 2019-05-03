@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.instant.message_app.R;
+import com.instant.message_app.constants.SocketConstant;
 import com.instant.message_app.entity.GroupChat;
+import com.instant.message_app.ui.CircleImageView;
+import com.instant.message_app.utils.LoadImagesTask;
 
 import java.util.List;
 
@@ -41,6 +44,10 @@ public class GroupChatRecyclerViewAdapter extends RecyclerView.Adapter<GroupChat
         viewHolder.name.setText(groupChats.get(position).getName());
         //viewHolder.synopsis.setText(groupChats.get(position).getName());
         viewHolder.itemView.setOnClickListener(v->onItemClickListener.onClick(position));
+        String uri= SocketConstant.HOST_NAME+"/"+groupChats.get(position).getImg();
+
+        new LoadImagesTask(viewHolder.img).execute(uri);
+
     }
 
     @Override
@@ -51,10 +58,12 @@ public class GroupChatRecyclerViewAdapter extends RecyclerView.Adapter<GroupChat
 
     class ViewHolder extends RecyclerView.ViewHolder{
         private TextView name,synopsis;
+        private CircleImageView img;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.text_name);
             synopsis=itemView.findViewById(R.id.text_synopsis);
+            img=itemView.findViewById(R.id.img);
         }
     }
 
